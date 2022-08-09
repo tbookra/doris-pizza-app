@@ -1,6 +1,6 @@
 # Getting Started with the Pizza app App
 
-clone the repo from github repository
+clone the repo from github repository at "https://github.com/tbookra/doris-pizza-app"
 open a new terminal on the root of the project
 write "npm i"
 write "npm run build"

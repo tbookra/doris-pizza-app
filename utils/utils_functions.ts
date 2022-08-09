@@ -39,14 +39,11 @@ export const startTopping = async () => {
             waiting_jobs = uncompleteOrders.length
             if(!ToppingChef1.busy){
                 ToppingChef1.prepare(uncompleteOrders[0])
-                
             } else if(!ToppingChef2.busy){
                 ToppingChef2.prepare(uncompleteOrders[0])
             } else if(!ToppingChef3.busy){
                 ToppingChef3.prepare(uncompleteOrders[0])
             } else {
-                console.log("topping chefs are busy!!!");
-                
                 await sleep(50)
             }
         } else {
@@ -54,8 +51,7 @@ export const startTopping = async () => {
             const now_working = await IsWorking.find()
             await IsWorking.update({_id:now_working[0].id},{toppingChefs_is_working: false})
         }
-        
-        
+    
     } while ( waiting_jobs > 0 )
 }
 

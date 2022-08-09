@@ -17,15 +17,13 @@ export interface Order {
     completed: Date | null
 }
 
-
-
 export class DoughChef extends Manufactorer{
     public busy: boolean = false
     constructor(name:string){
         super(name)
     }
     private time: number = 7000
-    async prepare(orderObj: Order): Promise<boolean> {
+    async prepare(orderObj: Order): Promise<void> {
         this.busy = true
        await OrderDB.update({_id:orderObj._id}, {$set:{status:"preparing dough", procces_started_at: Date.now()}}) 
        await sleep(this.time)
@@ -33,7 +31,6 @@ export class DoughChef extends Manufactorer{
        await OrderDB.update({_id:orderObj._id}, {$set:{status:"dough ready"}})
        const isCurrentWorking = await IsWorking.find()
         if(isCurrentWorking.length === 0 || !isCurrentWorking[0].toppingChefs_is_working) startTopping()
-        return true
     } 
 }
 
@@ -56,7 +53,7 @@ export class ToppingChef extends Manufactorer{
         this.jobs.push(true)
         this.isbusy()
         await OrderDB.update({_id:orderObj._id}, {$set:{status:"preparing topping"}}) 
-        await sleep(this.time)
+        await sleep(this.time * orderObj.toppings.length)
         this.jobs.pop()
         this.isbusy()
         await OrderDB.update({_id:orderObj._id}, {$set:{status:"topping ready"}})

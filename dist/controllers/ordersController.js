@@ -70,7 +70,7 @@ var handleOrder = function (req, res) { return __awaiter(void 0, void 0, void 0,
                 isCurrentWorking = _a.sent();
                 if (isCurrentWorking.length === 0 || !isCurrentWorking[0].doughChefs_is_working)
                     (0, utils_functions_1.startPreparing)();
-                res.status(200).header("Access-Control-Allow-Origin", "http://localhost:8005").json({ orders: orders });
+                res.status(200).header("Access-Control-Allow-Origin", "http://localhost:8005").json({ orders: "we got right to it!!!" });
                 return [3 /*break*/, 4];
             case 3:
                 err_1 = _a.sent();

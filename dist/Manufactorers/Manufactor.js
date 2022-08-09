@@ -91,7 +91,7 @@ var DoughChef = /** @class */ (function (_super) {
                         isCurrentWorking = _a.sent();
                         if (isCurrentWorking.length === 0 || !isCurrentWorking[0].toppingChefs_is_working)
                             (0, utils_functions_1.startTopping)();
-                        return [2 /*return*/, true];
+                        return [2 /*return*/];
                 }
             });
         });
@@ -127,7 +127,7 @@ var ToppingChef = /** @class */ (function (_super) {
                         return [4 /*yield*/, OrderDB.update({ _id: orderObj._id }, { $set: { status: "preparing topping" } })];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, (0, utils_functions_1.sleep)(this.time)];
+                        return [4 /*yield*/, (0, utils_functions_1.sleep)(this.time * orderObj.toppings.length)];
                     case 2:
                         _a.sent();
                         this.jobs.pop();

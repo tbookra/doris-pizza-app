@@ -110,9 +110,7 @@ var startTopping = function () { return __awaiter(void 0, void 0, void 0, functi
                 if (!!__1.ToppingChef3.busy) return [3 /*break*/, 6];
                 __1.ToppingChef3.prepare(uncompleteOrders[0]);
                 return [3 /*break*/, 8];
-            case 6:
-                console.log("topping chefs are busy!!!");
-                return [4 /*yield*/, sleep(50)];
+            case 6: return [4 /*yield*/, sleep(50)];
             case 7:
                 _a.sent();
                 _a.label = 8;
